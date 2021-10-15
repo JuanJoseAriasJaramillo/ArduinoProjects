@@ -16,26 +16,30 @@ void loop() {
   int humedad = analogRead(A0);
   Serial.println(humedad);
   delay(500);
- 
-  if (humedad <= 300){                      //Averigua si esta MUY humedo
+
+  if (humedad <= 300) {                     //Averigua si esta MUY humedo
     Serial.println("Muy humedo");
     digitalWrite(HumedadledVerdeHumedo, HIGH);
     digitalWrite(HumedadledAzulIntermedio, LOW);
     digitalWrite(HumedadledRojoSeco, LOW);
     digitalWrite(ReleBombaAgua, HIGH);
-  }else if(humedad > 301 && humedad < 600){ //Averigua si esta en un termino ok
+    digitalWrite(ReleSolenoideAgua, HIGH);
+  } else if (humedad > 301 && humedad < 600) { //Averigua si esta en un termino ok
     Serial.println("A medio");
     digitalWrite(HumedadledAzulIntermedio, HIGH);
     digitalWrite(HumedadledVerdeHumedo, LOW);
     digitalWrite(HumedadledRojoSeco, LOW);
     digitalWrite(ReleBombaAgua, HIGH);
-  }else if(humedad > 650){                  //Averigua si esta seco
+    digitalWrite(ReleSolenoideAgua, HIGH);
+  } else if (humedad > 650) {                //Averigua si esta seco
     Serial.println("Seco");
     digitalWrite(HumedadledRojoSeco, HIGH);
     digitalWrite(HumedadledAzulIntermedio, LOW);
-    digitalWrite(HumedadledVerdeHumedo, LOW);      
-    digitalWrite(ReleBombaAgua, LOW); 
-  }
+    digitalWrite(HumedadledVerdeHumedo, LOW);
+    
+    digitalWrite(ReleBombaAgua, LOW);
+    digitalWrite(ReleSolenoideAgua, LOW);
     
 
+  }
 }
